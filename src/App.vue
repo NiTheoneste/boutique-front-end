@@ -1,11 +1,18 @@
-<script setup>
-import {  RouterView } from 'vue-router'
+<script >
+  export default {
+  
+  } 
 </script>
 
 <template>
-  <RouterView />
+  <div class="app">
+    <router-view :key="$route.fullPath" />
+  </div>
 </template>
 
-<style scoped>
-
+<style>
+.app{
+  margin:0;
+  padding:0;
+}
 </style>

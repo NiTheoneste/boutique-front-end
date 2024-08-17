@@ -1,0 +1,21 @@
+@import './utilities.css';
+
+:root {
+  --primary-color: #4099ff;
+  --secondary-color: #263544;
+  --success-color: #2ed8b6;
+  --warning-color: #FFB64D;
+  --danger-color: #FF5370;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+ul {
+  list-style: none;
+}
