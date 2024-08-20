@@ -1,46 +1,35 @@
 <script>
-	import { ShoppingCart } from '@element-plus/icons-vue'
 	export default{
-		components:{ShoppingCart},
+		data(){
+			return {
+				length:0,
+				modify_password:false,
+			}
+		},
+		watch: {
+		 "$store.state.cart.content.length"(new_val){
+		 	this.length=new_val
+		 }
+		},
 	}
 </script>
 <template>
-	<v-app-bar class="nonprintable">
+	<v-app-bar>
 		<template v-slot:prepend>
 			<v-app-bar-nav-icon @click="toggleNav()"></v-app-bar-nav-icon>
 		</template>
 
-		<v-app-bar-title>Boutique</v-app-bar-title>
+		<v-app-bar-title>{{$store.state.appName}}</v-app-bar-title>
 
 		<v-spacer></v-spacer>
-
-		<!-- <v-btn icon id="menu-activator">
-			<v-icon>mdi-dots-vertical</v-icon>
-
-			<v-menu :close-on-content-click="false" activator="#menu-activator">
-				<v-card min-width="300">
-					<v-list>
-						<v-list-item prepend-icon="mdi-account" :title="store.fullName" :subtitle="store.role">
-							
-						</v-list-item>
-					</v-list>
-
-					<v-divider class="my-2"></v-divider>
-
-					<v-list nav>
-						<v-list-item
-							v-for="(item, index) in items"
-							:key="index"
-							:value="index"
-							:title="item.title"
-							:prepend-icon="item?.icon"
-							@click="item.action()"
-						>
-						</v-list-item>
-					</v-list>
-				</v-card>
-			</v-menu>
-		</v-btn> -->
+		 <v-badge
+		 	class="mr-4" 
+		 	:content="length" color="error"
+		 	@click="$store.state.cart_visible=!$store.state.cart_visible"
+			v-if="$route.name=='mainStock' || $route.name=='shopStock'"
+		 >
+	        <v-icon>mdi-cart-outline</v-icon>
+	     </v-badge>
 	</v-app-bar>
 </template>
 
