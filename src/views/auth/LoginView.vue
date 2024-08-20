@@ -14,16 +14,25 @@ export default{
 				"username":this.username,
 				"password":this.password
 			}
-			axios.post("login/", data)
+      if(this.username.trim() == ""){
+        this.useNotifyError("Fill the username please")
+        return
+      }
+      if(this.password.trim() == ""){
+        this.useNotifyError("Fill the password please")
+        return
+      }
+      console.log(data)
+			/*axios.post("login/", data)
 			.then((res)=>{
-				this.useNotifySuccess("Kaze kandi !")
-				this.$store.state.user = res.data
-				this.$router.push('/dashboard')
-			})
+				this.useNotifySuccess("Kaze kandi !")*/
+				this.$store.state.user = {access: data}
+				this.$router.push({name: "dashboard"})
+			/*})
 			.catch((err)=>{
 				console.log(err)
 				this.useNotifyError("Welcomme")
-			}).finally(()=>this.isLoading=false)
+			}).finally(()=>this.isLoading=false)*/
 		}
 	},
 }

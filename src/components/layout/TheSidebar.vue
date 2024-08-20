@@ -129,10 +129,17 @@ export default{
     <v-list density="compact" color="primary" nav >
       <v-list-subheader>KIC BOUTIQUE</v-list-subheader>
       <v-list-item
-        v-if="active_user_is('admin')"
         prepend-icon="mdi-monitor-dashboard"
         title="Dashboard"
         :to="{ name: 'dashboard' }"
+        link
+        exact=""
+      >
+      </v-list-item>
+      <v-list-item
+        prepend-icon="mdi-monitor-dashboard"
+        title="Products"
+        :to="{ name: 'products' }"
         link
         exact=""
       >

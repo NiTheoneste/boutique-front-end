@@ -9,6 +9,10 @@ import LoginView from '../views/auth/LoginView.vue'
 //Dasboard
 import DashboardView from '../views/dashboard/DashboardView.vue'
 
+//Products
+import ProductsView from '../views/products/ProductsView.vue'
+import CreateProduct from '../views/products/CreateProduct.vue'
+
 
 const routes= [
     {
@@ -25,6 +29,26 @@ const routes= [
               path: '',
               name: 'dashboard',
               component: DashboardView,
+            },
+          ]
+        },
+        {
+          path: 'products',
+          children: [
+            {
+              path: '',
+              name: 'products',
+              component: ProductsView,
+            },
+            {
+              path: '/create',
+              name: 'createProduct',
+              component: CreateProduct,
+            },
+            {
+              path: '/update/:id',
+              name: 'updateProduct',
+              component: CreateProduct,
             },
           ]
         },
