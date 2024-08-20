@@ -22,14 +22,6 @@
 		<v-app-bar-title>{{$store.state.appName}}</v-app-bar-title>
 
 		<v-spacer></v-spacer>
-		 <v-badge
-		 	class="mr-4" 
-		 	:content="length" color="error"
-		 	@click="$store.state.cart_visible=!$store.state.cart_visible"
-			v-if="$route.name=='mainStock' || $route.name=='shopStock'"
-		 >
-	        <v-icon>mdi-cart-outline</v-icon>
-	     </v-badge>
 	</v-app-bar>
 </template>
 

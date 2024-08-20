@@ -5,7 +5,10 @@ import store from '../store'
 //Login
 
 import LoginView from '../views/auth/LoginView.vue'
-import HomeView from '../views/home/HomeView.vue'
+
+//Dasboard
+import DashboardView from '../views/dashboard/DashboardView.vue'
+
 
 const routes= [
     {
@@ -13,14 +16,15 @@ const routes= [
       name: 'layout',
       component: TheLayout,
       children: [
-        { path: '', name: 'fallback', redirect: () => { return { name: 'home' } } },
+        { path: '', name: 'fallback', redirect: () => { return { name: 'dashboard' } } },
         {
-          path: '/home',
+          path: 'dashboard',
+
           children: [
             {
               path: '',
-              name: 'home',
-              component: HomeView,
+              name: 'dashboard',
+              component: DashboardView,
             },
           ]
         },
@@ -45,7 +49,7 @@ router.beforeEach((to) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.state.user?.access)
       return { name: 'login' }
-  }
+  } 
 
 })
 

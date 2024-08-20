@@ -5,7 +5,11 @@ export default createStore({
     user:null,
     url:"/api",
     rail:false,
-    appName:"BOUTIQUE",
+
+    active:'0',
+
+    users:[],
+    appName:"KIC-BOUTIQUE",
   },
   computed: {
     accessToken() {

@@ -127,12 +127,12 @@ export default{
 
     <!-- <v-divider></v-divider> -->
     <v-list density="compact" color="primary" nav >
-      <v-list-subheader>BOUTIQUE</v-list-subheader>
+      <v-list-subheader>KIC BOUTIQUE</v-list-subheader>
       <v-list-item
         v-if="active_user_is('admin')"
         prepend-icon="mdi-monitor-dashboard"
-        title="Home"
-        :to="{ name: 'home' }"
+        title="Dashboard"
+        :to="{ name: 'dashboard' }"
         link
         exact=""
       >
