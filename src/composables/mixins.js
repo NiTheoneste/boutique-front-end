@@ -15,27 +15,10 @@ export default {
         window.location = "/login"
       }
     },
-    getGroupsName(groups){
-      if(groups.length>0){
-        for(let x of groups){
-          return x.name
-        }
-      }else return "-"
-    },
     money(x, decimals=2) {
       let cash = parseFloat(x).toFixed(decimals)
       if(isNaN(x) || x == null) return "-";
       return cash.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    },
-    getFullName(user){
-      if(!user.first_name && !user.last_name)
-        return `${user.username}`
-      else return `${user.first_name} ${user.last_name}`
-    },
-    getQuantityBackGroundColor(qt){
-      if(qt<=0) return 'red'
-      if(qt>0 && qt <5) return 'orange'
-      else return 'white'
     },
     cleanString(str){
       if (!str) return "";
@@ -63,20 +46,6 @@ export default {
         'en-GB',
         { dateStyle: 'short', timeStyle: 'short' }
       ).format(date)
-    },
-    getDate(date){
-      return useDateFormat(date,"YYYY-MM-DD").value
-    },
-    getTime(date){
-      return useDateFormat(date,"HH:mm").value
-    },
-    getToday(){
-      return new Date().toISOString().split("T")[0]
-    },
-    getDays(debut){
-      debut=new Date(debut)
-      let fin=new Date()
-      return Math.ceil(((((fin-debut)/1000)/3600)/24))
     },
     currentDateTime(){
         var m = new Date()
@@ -114,13 +83,6 @@ export default {
          this.useNotifyError(this.cleanString(error_msg))
       }
     },
-    truncate(value, length) {
-      if (value.length > length) {
-        return value.substring(0, length) + "...";
-      } else {
-        return value;
-      }
-    },
     active_user_is(...groups){
       let user_groups = this.active_user?.groups
       if(!!this.active_user){
@@ -132,53 +94,30 @@ export default {
       }
       return false
     },
-    exportCsv(items){
-		let data = "sep=;\n"
-		let titles = []
-		if(items.length > 0){
-			for(let name of Object.keys(items[0])){
-				if(name != "appareil"){
-					data += (name + ";")
-					titles.push(name)
-				}
-			}
-			data += "\n"
-			for(let item of items){
-				for(let title of titles){
-					data += (JSON.stringify(item[title]) + ";")
-				}
-				data += "\n"
-			}
-  			window.location = "data:text/csv;base64,77u/" + btoa(data);
-		}
-	},
-	useNotifySuccess(message){
-		ElMessage({
-			message: message,
-			type: 'success',
-			duration: 4000,
-		})
-	},
-	useNotifyError(message){
-		ElMessage({
-			message: message,
-			type: 'error',
-			duration: 4000
-		})
-	},
-	useNotifyWarning(message){
-		ElMessage({
-			message: message,
-			type: 'warning',
-			duration: 4000
-		})
-	},
-  toggleNav() {
-      this.$store.state.rail = !this.$store.state.rail
-    },
-  userService(name){
-      return this.active_user?.attributions?.includes(name)
-    },
+  	useNotifySuccess(message){
+  		ElMessage({
+  			message: message,
+  			type: 'success',
+  			duration: 4000,
+  		})
+  	},
+  	useNotifyError(message){
+  		ElMessage({
+  			message: message,
+  			type: 'error',
+  			duration: 4000
+  		})
+  	},
+  	useNotifyWarning(message){
+  		ElMessage({
+  			message: message,
+  			type: 'warning',
+  			duration: 4000
+  		})
+  	},
+    toggleNav() {
+        this.$store.state.rail = !this.$store.state.rail
+      },
   },
   computed:{
     active_user(){
