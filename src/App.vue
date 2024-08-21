@@ -1,6 +1,14 @@
 <script >
 	export default {
 		watch: {
+			"$store.state.products":{
+		      deep:true,
+		      handler(new_val){
+		        if(!!new_val){
+		          localStorage.setItem('products', JSON.stringify(new_val));
+		        }
+		      }
+			},
 			"$store.state.user":{
 		      deep:true,
 		      handler(new_val){
@@ -14,6 +22,7 @@
 		},
 		mounted(){
 			var user = JSON.parse(localStorage.getItem('user'));
+			this.$store.state.products = JSON.parse(localStorage.getItem('products'));
 		    if(user) {
 		      this.$store.state.user = user;
 		    }
